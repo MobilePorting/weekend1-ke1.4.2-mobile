@@ -44,7 +44,7 @@ class VideoHandler extends FlxSprite
 	var finishCallback:Void->Void;
 	var waitingStart:Bool = false;
 	var startDrawing:Bool = false;
-	var frameCount:Float = 0;
+	var frameTimer:Float = 0;
 	var completed:Bool = false;
 	var destroyed:Bool = false;
 

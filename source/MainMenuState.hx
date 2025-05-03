@@ -13,7 +13,7 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import lime.app.Application;
 
-#if dekstop
+#if desktop
 import Discord.DiscordClient;
 #end
 
@@ -45,7 +45,10 @@ class MainMenuState extends MusicBeatState
 
 	override function create()
 	{
-		#if dekstop
+		Paths.clearStoredMemory();
+		Paths.clearUnusedMemory();
+
+		#if desktop
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
 		#end

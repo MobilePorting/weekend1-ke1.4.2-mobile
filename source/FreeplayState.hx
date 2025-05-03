@@ -8,10 +8,9 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
+import flixel.system.FlxSound;
 import lime.utils.Assets;
-
-
-#if dekstop
+#if desktop
 import Discord.DiscordClient;
 #end
 
@@ -37,6 +36,9 @@ class FreeplayState extends MusicBeatState
 
 	override function create()
 	{
+		Paths.clearStoredMemory();
+		Paths.clearUnusedMemory();
+
 		var initSonglist = CoolUtil.coolTextFile(Paths.txt('freeplaySonglist'));
 
 		for (i in 0...initSonglist.length)
@@ -45,9 +47,9 @@ class FreeplayState extends MusicBeatState
 			songs.push(new SongMetadata(data[0], Std.parseInt(data[2]), data[1]));
 		}
 
-		 #if dekstop
-		 DiscordClient.changePresence("In the Freeplay Menu", null);
-		 #end
+		#if desktop
+		DiscordClient.changePresence("In the Freeplay Menu", null);
+		#end
 
 		var isDebug:Bool = false;
 
@@ -139,7 +141,7 @@ class FreeplayState extends MusicBeatState
 
 		var upP = controls.UP_P;
 		var downP = controls.DOWN_P;
-		var accepted = controls.ACCEPT;
+		var accepted = FlxG.keys.justPressed.ENTER;
 
 		if (upP)
 		{
@@ -162,6 +164,8 @@ class FreeplayState extends MusicBeatState
 
 		if (accepted)
 		{
+			destroyFreeplayVocals();
+
 			var poop:String = Highscore.formatSong(songs[curSelected].songName.toLowerCase(), curDifficulty);
 
 			trace(poop);
@@ -172,6 +176,32 @@ class FreeplayState extends MusicBeatState
 			PlayState.storyWeek = songs[curSelected].week;
 			trace('CUR WEEK' + PlayState.storyWeek);
 			LoadingState.loadAndSwitchState(new PlayState());
+		}
+
+		if (FlxG.keys.justPressed.SPACE)
+		{
+			if (instPlaying != curSelected)
+			{
+				#if PRELOAD_ALL
+				destroyFreeplayVocals();
+				FlxG.sound.music.volume = 0;
+				var poop:String = Highscore.formatSong(songs[curSelected].songName.toLowerCase(), curDifficulty);
+				PlayState.SONG = Song.loadFromJson(poop, songs[curSelected].songName.toLowerCase());
+
+				if (PlayState.SONG.needsVoices)
+					vocals = new FlxSound().loadEmbedded(Paths.voices(PlayState.SONG.song));
+				else
+					vocals = new FlxSound();
+
+				FlxG.sound.list.add(vocals);
+				FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 0.7);
+				vocals.play();
+				vocals.persist = true;
+				vocals.looped = true;
+				vocals.volume = 0.7;
+				instPlaying = curSelected;
+				#end
+			}
 		}
 	}
 
@@ -186,8 +216,8 @@ class FreeplayState extends MusicBeatState
 
 		#if !switch
 		intendedScore = Highscore.getScore(songs[curSelected].songName, curDifficulty);
-		if(songs[curSelected].songName.toLowerCase() == '2hot')
-		intendedScore = Highscore.getScore('TwoHOT', curDifficulty);
+		if (songs[curSelected].songName.toLowerCase() == '2hot')
+			intendedScore = Highscore.getScore('TwoHOT', curDifficulty);
 		#end
 
 		switch (curDifficulty)
@@ -201,6 +231,8 @@ class FreeplayState extends MusicBeatState
 		}
 	}
 
+	private static var vocals:FlxSound = null;
+	var instPlaying:Int = -1;
 	function changeSelection(change:Int = 0)
 	{
 		FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
@@ -214,13 +246,13 @@ class FreeplayState extends MusicBeatState
 
 		#if !switch
 		intendedScore = Highscore.getScore(songs[curSelected].songName, curDifficulty);
-		if(songs[curSelected].songName.toLowerCase() == '2hot')
-		intendedScore = Highscore.getScore('TwoHOT', curDifficulty);
+		if (songs[curSelected].songName.toLowerCase() == '2hot')
+			intendedScore = Highscore.getScore('TwoHOT', curDifficulty);
 		#end
 
-		#if PRELOAD_ALL
+		/*#if PRELOAD_ALL
 		FlxG.sound.playMusic(Paths.inst(songs[curSelected].songName), 0);
-		#end
+		#end*/
 
 		var bullShit:Int = 0;
 
@@ -243,6 +275,17 @@ class FreeplayState extends MusicBeatState
 				item.alpha = 1;
 			}
 		}
+	}
+
+	public static function destroyFreeplayVocals()
+	{
+		if (vocals != null)
+		{
+			vocals.stop();
+			vocals.destroy();
+		}
+
+		vocals = null;
 	}
 }
 

@@ -1,7 +1,6 @@
 package flxanimate;
 
 import flixel.math.FlxMath;
-import flixel.system.FlxAssets.FlxShader;
 
 enum Type
 {

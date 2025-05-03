@@ -403,7 +403,7 @@ class PlayState extends MusicBeatState
 
 	override public function create()
 	{
-
+		Paths.clearStoredMemory();
 		if (FlxG.sound.music != null)
 			FlxG.sound.music.stop();
 
@@ -869,7 +869,7 @@ add(groupBlazin);
 
 		add(camFollow);
 
-		FlxG.camera.follow(camFollow, LOCKON, 0.04 * (30 / (cast (Lib.current.getChildAt(0), Main)).getFPS()));
+		FlxG.camera.follow(camFollow, LOCKON, 0.04 * (30 / (cast (Lib.current.getChildAt(0), Main)).getFPS()#if mobile + 1 #end));
 		FlxG.camera.zoom = defaultCamZoom;
 		FlxG.camera.focusOn(camFollow.getPosition());
 
@@ -994,6 +994,8 @@ add(groupBlazin);
 			rep = new Replay("na");
 
 		super.create();
+
+		Paths.clearUnusedMemory();
 	}
 
 	var startTimer:FlxTimer;
@@ -1568,6 +1570,14 @@ add(groupBlazin);
 			babyArrow.animation.play('static');
 			babyArrow.x += 50;
 			babyArrow.x += ((FlxG.width / 2) * player);
+
+			if (FlxG.save.data.middleScroll)
+			{
+				babyArrow.x -= 275;
+				if (player != 1) {
+					babyArrow.visible = false;
+				}
+			}
 
 			strumLineNotes.add(babyArrow);
 		}
@@ -3954,7 +3964,7 @@ var remappedIntensityValue:Float = FlxMath.remapToRange(Conductor.songPosition, 
 		endSong();
 		}, false);
 		@:privateAccess
-		video.vlcBitmap.onVideoReady = endCutscene;
+		video.bitmap.onPlaying.add(endCutscene);
 		add(video);
 		video.alpha = 0.00000001;
 	}

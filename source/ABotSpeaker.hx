@@ -111,7 +111,7 @@ class ABotSpeaker extends FlxTypedSpriteGroup<FlxSprite>
 		analyzer.maxFreq = 22000;
 		analyzer.minFreq = 10;
 	
-		#if desktop
+		#if (desktop || mobile)
 		analyzer.fftN = 256;
 		#end
 	}
