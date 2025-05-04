@@ -7,8 +7,6 @@ import haxe.macro.Type;
 
 import grig.audio.hxal.HVar;
 
-using StringTools;
-
 class ClassDescriptor
 {
     public var className:String;

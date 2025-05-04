@@ -36,8 +36,6 @@ import openfl.media.Sound;
 import openfl.net.FileReference;
 import openfl.utils.ByteArray;
 
-using StringTools;
-
 class ChartingState extends MusicBeatState
 {
 	public static var noteTypeList:Array<String> = 

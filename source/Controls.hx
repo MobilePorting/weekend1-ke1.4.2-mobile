@@ -12,8 +12,6 @@ import flixel.input.gamepad.FlxGamepadInputID;
 import flixel.input.keyboard.FlxKey;
 import mobile.input.MobileInputID;
 
-using StringTools;
-
 #if (haxe >= "4.0.0")
 enum abstract Action(String) to String from String
 {

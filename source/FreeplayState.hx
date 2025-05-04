@@ -14,8 +14,6 @@ import lime.utils.Assets;
 import Discord.DiscordClient;
 #end
 
-using StringTools;
-
 class FreeplayState extends MusicBeatState
 {
 	var songs:Array<SongMetadata> = [];

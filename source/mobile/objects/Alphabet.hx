@@ -11,8 +11,6 @@ import flixel.system.FlxSound;
 import mobile.objects.Alphabet as ThisAlphabet;
 import openfl.media.Sound;
 
-using StringTools;
-
 enum Alignment
 {
 	LEFT;

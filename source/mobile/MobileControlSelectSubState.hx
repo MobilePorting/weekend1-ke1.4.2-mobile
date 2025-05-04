@@ -39,8 +39,6 @@ import mobile.TouchButton;
 import mobile.TouchUtil;
 import mobile.objects.Alphabet;
 
-using StringTools;
-
 class MobileControlSelectSubState extends MusicBeatSubstate
 {
 	var options:Array<String> = ['Pad-Right', 'Pad-Left', 'Pad-Custom', 'Hitbox'];

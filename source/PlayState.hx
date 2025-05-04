@@ -67,8 +67,6 @@ import Sys;
 import sys.FileSystem;
 #end
 
-using StringTools;
-
 class PlayState extends MusicBeatState
 {
 	public static var curStage:String = '';

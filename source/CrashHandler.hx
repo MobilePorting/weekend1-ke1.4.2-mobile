@@ -7,8 +7,6 @@ import openfl.errors.Error;
 import sys.FileSystem;
 import sys.io.File;
 #end
-
-using StringTools;
 using flixel.util.FlxArrayUtil;
 
 /**

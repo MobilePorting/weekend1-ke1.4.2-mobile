@@ -32,8 +32,6 @@ import mobile.MobileData;
 import mobile.input.MobileInputID;
 import mobile.input.MobileInputManager;
 
-using StringTools;
-
 /**
  * ...
  * @author: Karim Akra and Homura Akemi (HomuHomu833)

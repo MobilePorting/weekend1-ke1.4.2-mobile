@@ -31,8 +31,6 @@ import Discord.DiscordClient;
 import sys.thread.Thread;
 #end
 
-using StringTools;
-
 class TitleState extends MusicBeatState
 {
 	static var initialized:Bool = false;

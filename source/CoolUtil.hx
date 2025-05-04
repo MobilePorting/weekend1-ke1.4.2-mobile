@@ -3,8 +3,6 @@ package;
 import lime.utils.Assets;
 import flixel.util.FlxColor;
 
-using StringTools;
-
 class CoolUtil
 {
 	public static var difficultyArray:Array<String> = ['EASY', "NORMAL", "HARD"];

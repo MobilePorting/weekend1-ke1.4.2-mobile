@@ -17,8 +17,6 @@ import lime.net.curl.CURLCode;
 import Discord.DiscordClient;
 #end
 
-using StringTools;
-
 class StoryMenuState extends MusicBeatState
 {
 	var scoreText:FlxText;

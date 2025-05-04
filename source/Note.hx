@@ -7,8 +7,6 @@ import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.math.FlxMath;
 import flixel.util.FlxColor;
 
-using StringTools;
-
 class Note extends FlxSprite
 {
 	public var strumTime:Float = 0;

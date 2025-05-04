@@ -17,8 +17,6 @@ import lime.app.Application;
 import Discord.DiscordClient;
 #end
 
-using StringTools;
-
 class MainMenuState extends MusicBeatState
 {
 	var curSelected:Int = 0;
