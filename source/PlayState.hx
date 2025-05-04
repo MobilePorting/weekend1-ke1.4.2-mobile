@@ -674,7 +674,7 @@ class PlayState extends MusicBeatState
 				gf.x = 1453 - gf.characterOrigin.x + gf.globalOffsets[0];
 				gf.y = 1100 - gf.characterOrigin.y + gf.globalOffsets[1];
 				var dadCenterX = dad.x + 135 + dad.width / 2;
-				var dadCenterY = dad.y + 45 + dad.height / 2;
+				var dadCenterY = dad.y + 60 + dad.height / 2;
 				camPos.set(dadCenterX + 500, dadCenterY + -100);
 			case 'phillyBlazin':
 				boyfriend.x = -237 - boyfriend.characterOrigin.x;
@@ -2143,7 +2143,7 @@ var remappedIntensityValue:Float = FlxMath.remapToRange(Conductor.songPosition, 
 				{
 					case 'phillyStreets':
 						var dadCenterX = dad.x + 135 + dad.width / 2;
-						var dadCenterY = dad.y + 45 + dad.height / 2;
+						var dadCenterY = dad.y + 60 + dad.height / 2;
 						camFollow.setPosition(dadCenterX + 500, dadCenterY + -100);
 					case 'phillyBlazin':
 						camFollow.setPosition(1403, 717);
@@ -3774,7 +3774,7 @@ var remappedIntensityValue:Float = FlxMath.remapToRange(Conductor.songPosition, 
 						var gfCenterX = gf.x + gf.width / 2;
 						var gfCenterY = gf.y + gf.height / 2;
 						var dadCenterX = dad.x + 135 + dad.width / 2;
-						var dadCenterY = dad.y + 45 + dad.height / 2;
+						var dadCenterY = dad.y + 60 + dad.height / 2;
 		var picoPos:Array<Float> = [boyfriendCenterX + -350, boyfriendCenterY + -100];
 		var nenePos:Array<Float> = [gfCenterX, gfCenterY];
 		var darnellPos:Array<Float> = [dadCenterX + 500, dadCenterY - 100];
