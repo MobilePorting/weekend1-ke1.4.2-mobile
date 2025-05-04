@@ -114,7 +114,7 @@ class Paths
 
 	public static function returnGraphic(key:String, ?library:String):FlxGraphic
 	{
-		var path = getPath('images/$key.png', IMAGE, library);
+		var path = getPath('images/$key.astc', IMAGE, library);
 		if (OpenFlAssets.exists(path, IMAGE))
 		{
 			if (!currentTrackedAssets.exists(path))
@@ -205,7 +205,7 @@ class Paths
 
 	inline static public function luaImage(key:String, ?library:String)
 	{
-		return getPath('data/$key.png', IMAGE, library);
+		return getPath('data/$key.astc', IMAGE, library);
 	}
 
 	inline static public function txt(key:String, ?library:String)
