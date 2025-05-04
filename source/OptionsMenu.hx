@@ -50,7 +50,9 @@ class OptionsMenu extends MusicBeatState
 			#if sys
 			new ReplayOption("View replays"),
 			#end
-			new WatermarkOption("Turn off all watermarks from the engine.")
+			new WatermarkOption("Turn off all watermarks from the engine."),
+			new DisableRainShader("Disables Rain Shader in Weekend1"),
+			new DisableFFT("Disables FFT in Nene's Speaker"),
 		])
 		
 	];

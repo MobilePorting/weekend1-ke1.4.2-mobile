@@ -29,7 +29,8 @@ class ABotSpeaker extends FlxTypedSpriteGroup<FlxSprite>
 	function set_snd(changed:FlxSound)
 	{
 		snd = changed;
-		initAnalyzer();
+		if (!FlxG.save.data.disableFFT)
+			initAnalyzer();
 		return snd;
 	}
 
@@ -40,26 +41,29 @@ class ABotSpeaker extends FlxTypedSpriteGroup<FlxSprite>
 		bg.antialiasing = true;
 		add(bg);
 
-		var vizX:Float = 0;
-		var vizY:Float = 0;
-		var vizFrames = Paths.getSparrowAtlas('aBotViz');
-		for (i in 1...VIZ_MAX+1)
+		if (!FlxG.save.data.disableFFT)
 		{
-			vizX += VIZ_POS_X[i-1];
-			vizY += VIZ_POS_Y[i-1];
-			var viz:FlxSprite = new FlxSprite(vizX, vizY);
-			viz.frames = vizFrames;
-			viz.animation.addByPrefix('VIZ', 'viz$i', 0);
-			viz.animation.play('VIZ', true);
-			viz.animation.curAnim.finish();
-			viz.antialiasing = true;
-			vizSprites.push(viz);
-			viz.updateHitbox();
-			viz.centerOffsets();
-			add(viz);
-			viz.visible = false;
-			viz.x += -100 + 200;
-			viz.y += 216 + 84;
+			var vizX:Float = 0;
+			var vizY:Float = 0;
+			var vizFrames = Paths.getSparrowAtlas('aBotViz');
+			for (i in 1...VIZ_MAX+1)
+			{
+				vizX += VIZ_POS_X[i-1];
+				vizY += VIZ_POS_Y[i-1];
+				var viz:FlxSprite = new FlxSprite(vizX, vizY);
+				viz.frames = vizFrames;
+				viz.animation.addByPrefix('VIZ', 'viz$i', 0);
+				viz.animation.play('VIZ', true);
+				viz.animation.curAnim.finish();
+				viz.antialiasing = true;
+				vizSprites.push(viz);
+				viz.updateHitbox();
+				viz.centerOffsets();
+				add(viz);
+				viz.visible = false;
+				viz.x += -100 + 200;
+				viz.y += 216 + 84;
+			}
 		}
 
 		eyeBg = new FlxSprite(-100 + 40, 216 + 250).makeGraphic(1, 1, FlxColor.WHITE);
@@ -121,22 +125,25 @@ class ABotSpeaker extends FlxTypedSpriteGroup<FlxSprite>
 	{
 		super.update(elapsed);
 
-		var levels = (analyzer != null) ? analyzer.getLevels() : getDefaultLevels();
-		var oldLevelMax = levelMax;
-		levelMax = 0;
-		for (i in 0...Std.int(Math.min(vizSprites.length, levels.length)))
+		if (!FlxG.save.data.disableFFT)
 		{
-			var animFrame:Int = Math.round(levels[i].value * 6);
+			var levels = (analyzer != null) ? analyzer.getLevels() : getDefaultLevels();
+			var oldLevelMax = levelMax;
+			levelMax = 0;
+			for (i in 0...Std.int(Math.min(vizSprites.length, levels.length)))
+			{
+				var animFrame:Int = Math.round(levels[i].value * 6);
 
-			vizSprites[i].visible = animFrame > 0;
+				vizSprites[i].visible = animFrame > 0;
 
-			animFrame -= 1;
+				animFrame -= 1;
 
-			animFrame = Std.int(Math.abs(FlxMath.bound(animFrame, 0, 5) - 5));
-		
-			vizSprites[i].animation.curAnim.curFrame = animFrame;
+				animFrame = Std.int(Math.abs(FlxMath.bound(animFrame, 0, 5) - 5));
 
-			levelMax = Std.int(Math.max(levelMax, 5 - animFrame));
+				vizSprites[i].animation.curAnim.curFrame = animFrame;
+
+				levelMax = Std.int(Math.max(levelMax, 5 - animFrame));
+			}
 		}
 	}
 
