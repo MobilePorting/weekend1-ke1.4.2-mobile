@@ -11,8 +11,13 @@ import openfl.Lib;
 import openfl.display3D.textures.Texture;
 import openfl.system.System;
 import flxanimate.FlxAnimate;
+#if js
+import js.html.File;
+import js.html.FileSystem;
+#else
 import sys.io.File;
 import sys.FileSystem;
+#end
 
 using StringTools;
 

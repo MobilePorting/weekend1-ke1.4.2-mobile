@@ -24,8 +24,13 @@ import flixel.math.FlxMath;
 import flixel.FlxBasic;
 import flixel.system.FlxAssets.FlxGraphicAsset;
 import flixel.system.FlxSound;
+#if js
+import js.html.File;
+import js.html.FileSystem;
+#else
 import sys.io.File;
 import sys.FileSystem;
+#end
 
 typedef Settings = {
 	?ButtonSettings:Map<String, flxanimate.animate.FlxAnim.ButtonSettings>,
@@ -49,9 +54,6 @@ class FlxAnimate extends FlxSprite
 	// public var rectangle:FlxRect;
 	
 	public var showPivot:Bool = #if debug true #else false #end;
-
-	//Checks to see if file is embedded or not.
-	public var isAssets:Bool = true;
 
 	var _pivot:FlxFrame;
 
@@ -90,13 +92,12 @@ class FlxAnimate extends FlxSprite
 
 	public function loadAtlas(Path:String)
 	{
-		if (!Assets.exists('$Path/Animation.json') && !FileSystem.exists('$Path/Animation.json') && haxe.io.Path.extension(Path) != "zip")
+		if (!Assets.exists('$Path/Animation.json') && haxe.io.Path.extension(Path) != "zip")
 		{
 			FlxG.log.error('Animation file not found in specified path: "$path", have you written the correct path?');
 			return;
 		}
 
-		isAssets = Assets.exists('$Path/Animation.json');
 		anim._loadAtlas(atlasSetting(Path));
 		frames = FlxAnimateFrames.fromTextureAtlas(Path);
 	}
@@ -109,7 +110,7 @@ class FlxAnimate extends FlxSprite
 			var trimmed:String = StringTools.trim(pathOrStr);
 			trimmed = trimmed.substr(trimmed.length - 5).toLowerCase();
 
-			if(trimmed == '.json') myJson = sys.io.File.getContent(myJson); //is a path
+			if(trimmed == '.json') myJson = openfl.Assets.getText(myJson); //is a path
 			animJson = cast haxe.Json.parse(_removeBOM(myJson));
 		}
 		else animJson = cast myJson;
@@ -122,12 +123,12 @@ class FlxAnimate extends FlxSprite
 
 		if(trimmed == '.json') //Path is json
 		{
-			myData = sys.io.File.getContent(pathOrStr);
+			myData = openfl.Assets.getText(pathOrStr);
 			isXml = false;
 		}
 		else if (trimmed.substr(1) == '.xml') //Path is xml
 		{
-			myData = sys.io.File.getContent(pathOrStr);
+			myData = openfl.Assets.getText(pathOrStr);
 			isXml = true;
 		}
 		myData = _removeBOM(myData);
@@ -449,7 +450,7 @@ class FlxAnimate extends FlxSprite
 		var jsontxt:AnimAtlas = null;
 		if (haxe.io.Path.extension(Path) == "zip")
 		{
-			var thing = Zip.readZip(isAssets ? Assets.getBytes(Path) : File.getBytes(Path));
+			var thing = Zip.readZip(Assets.getBytes(Path));
 			
 			for (list in Zip.unzip(thing))
 			{
@@ -465,7 +466,7 @@ class FlxAnimate extends FlxSprite
 		}
 		else
 		{
-			jsontxt = haxe.Json.parse(isAssets ? openfl.Assets.getText('$Path/Animation.json') : File.getContent('$Path/Animation.json'));
+			jsontxt = haxe.Json.parse(openfl.Assets.getText('$Path/Animation.json'));
 		}
 
 		return jsontxt;

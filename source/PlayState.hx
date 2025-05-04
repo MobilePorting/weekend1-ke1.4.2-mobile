@@ -3994,8 +3994,12 @@ var remappedIntensityValue:Float = FlxMath.remapToRange(Conductor.songPosition, 
 		video.playMP4(Paths.video("2hotCutscene"), function(){
 		endSong();
 		}, false);
+		#if hxvlc
 		@:privateAccess
 		video.bitmap.onPlaying.add(endCutscene);
+		#else
+		endCutscene();
+		#end
 		add(video);
 		video.alpha = 0.00000001;
 	}
