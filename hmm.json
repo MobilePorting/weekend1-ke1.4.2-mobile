@@ -31,7 +31,7 @@
       "name": "hxcpp",
       "type": "git",
       "dir": null,
-      "ref": "master",
+      "ref": null,
       "url": "https://github.com/MobilePorting/hxcpp"
     },
     {
@@ -43,7 +43,7 @@
       "name": "lime",
       "type": "git",
       "dir": null,
-      "ref": "master",
+      "ref": null,
       "url": "https://github.com/MobilePorting/lime"
     },
     {
