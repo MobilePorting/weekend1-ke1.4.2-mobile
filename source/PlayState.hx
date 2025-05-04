@@ -869,8 +869,9 @@ add(groupBlazin);
 
 		add(camFollow);
 
-		FlxG.camera.follow(camFollow, LOCKON, 0.04 * (30 / (cast (Lib.current.getChildAt(0), Main)).getFPS() /*#if mobile + 1 #end*/));
+		FlxG.camera.follow(camFollow, LOCKON, 0);
 		FlxG.camera.zoom = defaultCamZoom;
+		FlxG.camera.snapToTarget();
 		FlxG.camera.focusOn(camFollow.getPosition());
 
 		FlxG.worldBounds.set(0, 0, FlxG.width, FlxG.height);
@@ -1791,6 +1792,11 @@ add(groupBlazin);
 
 	override public function update(elapsed:Float)
 	{
+		if(!inCutscene && !paused)
+			FlxG.camera.followLerp = 0.04 * 1;
+		else
+			FlxG.camera.followLerp = 0;
+
 		if(gf.curCharacter == 'nene')
 		{
 		if (shouldTransitionState()) {
@@ -1985,6 +1991,7 @@ var remappedIntensityValue:Float = FlxMath.remapToRange(Conductor.songPosition, 
 			persistentUpdate = false;
 			persistentDraw = true;
 			paused = true;
+			FlxG.camera.followLerp = 0;
 			if (curStage == 'phillyStreets')
 			{
 			pauseCars();
