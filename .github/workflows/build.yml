@@ -57,6 +57,7 @@ jobs:
         run: |
           haxelib install hmm --quiet
           haxelib run hmm install --quiet
+          haxelib set openfl 9.1.0
 
       - name: Configure Android
         if: inputs.name == 'Android'
