@@ -63,6 +63,12 @@ class KadeEngineData
 		if (FlxG.save.data.watermark == null)
 			FlxG.save.data.watermark = true;
 
+		if (FlxG.save.data.disableFFT == null)
+			FlxG.save.data.disableFFT = false;
+
+		if (FlxG.save.data.disableRainShader == null)
+			FlxG.save.data.disableRainShader = false;
+
 		Conductor.recalculateTimings();
 
 		Main.watermarks = FlxG.save.data.watermark;

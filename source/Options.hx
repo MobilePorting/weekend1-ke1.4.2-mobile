@@ -528,3 +528,43 @@ class OffsetMenu extends Option
 		return "Time your offset";
 	}
 }
+
+class DisableFFT extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+	public override function press():Bool
+	{
+		FlxG.save.data.disableFFT = !FlxG.save.data.disableFFT;
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return "Disable FFT " + (!FlxG.save.data.disableFFT ? "off" : "on");
+	}
+}
+
+class DisableRainShader extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+	public override function press():Bool
+	{
+		FlxG.save.data.disableRainShader = !FlxG.save.data.disableRainShader;
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return "Disable Rain Shader " + (!FlxG.save.data.disableRainShader ? "off" : "on");
+	}
+}
