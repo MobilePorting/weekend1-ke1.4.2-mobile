@@ -21,7 +21,7 @@ import sys.FileSystem;
 
 class Paths
 {
-	inline public static var SOUND_EXT = #if web "mp3" #else "ogg" #end;
+	public static var SOUND_EXT = #if web "mp3" #else "ogg" #end;
 
 	static var currentLevel:String;
 
@@ -112,27 +112,23 @@ class Paths
 		localTrackedAssets = [];
 	}
 
-	public static function returnGraphic(key:String, ?library:String):FlxGraphic
+	public static function cacheBitmap(file:String, ?bitmap:BitmapData = null):FlxGraphic
 	{
-		var path = getPath('images/$key.astc', IMAGE, library);
-		if (OpenFlAssets.exists(path, IMAGE))
+		if (bitmap == null)
 		{
-			if (!currentTrackedAssets.exists(path))
-			{
-				var newGraphic:FlxGraphic = FlxG.bitmap.add(path, false, path);
-				if (newGraphic != null)
-					newGraphic.persist = true;
-				else
-					trace('smth up with the graphic ($key)');
+			if (OpenFlAssets.exists(file, BINARY))
+				bitmap = OpenFlAssets.getBitmapData(file);
 
-				currentTrackedAssets.set(path, newGraphic);
-			}
-			localTrackedAssets.push(path);
-			return currentTrackedAssets.get(path);
+			if (bitmap == null)
+				return null;
 		}
 
-		trace('$key image is null');
-		return null;
+		localTrackedAssets.push(file);
+		var newGraphic:FlxGraphic = FlxGraphic.fromBitmapData(bitmap, false, file);
+		newGraphic.persist = true;
+		newGraphic.destroyOnNoUse = false;
+		currentTrackedAssets.set(file, newGraphic);
+		return newGraphic;
 	}
 
 	public static function returnSound(path:String, key:String, ?library:String):Sound
@@ -183,42 +179,42 @@ class Paths
 		return if (library == "preload" || library == "default") getPreloadPath(file); else getLibraryPathForce(file, library);
 	}
 
-	inline public static function getLibraryPathForce(file:String, library:String)
+	public static function getLibraryPathForce(file:String, library:String)
 	{
 		return '$library:assets/$library/$file';
 	}
 
-	inline public static function getPreloadPath(file:String)
+	public static function getPreloadPath(file:String)
 	{
 		return 'assets/$file';
 	}
 
-	inline static public function file(file:String, type:AssetType = TEXT, ?library:String)
+	static public function file(file:String, type:AssetType = TEXT, ?library:String)
 	{
 		return getPath(file, type, library);
 	}
 
-	inline static public function lua(key:String,?library:String)
+	static public function lua(key:String,?library:String)
 	{
 		return getPath('data/$key.lua', TEXT, library);
 	}
 
-	inline static public function luaImage(key:String, ?library:String)
+	static public function luaImage(key:String, ?library:String)
 	{
-		return getPath('data/$key.astc', IMAGE, library);
+		return getPath('data/$key.astc', BINARY, library);
 	}
 
-	inline static public function txt(key:String, ?library:String)
+	static public function txt(key:String, ?library:String)
 	{
 		return getPath('data/$key.txt', TEXT, library);
 	}
 
-	inline static public function xml(key:String, ?library:String)
+	static public function xml(key:String, ?library:String)
 	{
 		return getPath('data/$key.xml', TEXT, library);
 	}
 
-	inline static public function json(key:String, ?library:String)
+	static public function json(key:String, ?library:String)
 	{
 		return getPath('data/$key.json', TEXT, library);
 	}
@@ -229,63 +225,82 @@ class Paths
 		return sound;
 	}
 
-	inline static public function soundRandom(key:String, min:Int, max:Int, ?library:String)
+	static public function soundRandom(key:String, min:Int, max:Int, ?library:String)
 	{
 		return sound(key + FlxG.random.int(min, max), library);
 	}
 
-	inline static public function music(key:String, ?library:String)
+	static public function music(key:String, ?library:String)
 	{
 		var file:Sound = returnSound('music', key, library);
 		return file;
 	}
 
-	inline static public function voices(song:String):Any
+	static public function voices(song:String):Any
 	{
 		var songKey:String = '${formatToSongPath(song)}/Voices';
 		var voices = returnSound('songs', songKey);
 		return voices;
 	}
 
-	inline static public function inst(song:String):Any
+	static public function inst(song:String):Any
 	{
 		var songKey:String = '${formatToSongPath(song)}/Inst';
 		var inst = returnSound('songs', songKey);
 		return inst;
 	}
 
-	inline static public function image(key:String, ?library:String):FlxGraphic
+	static public function image(key:String, ?library:String):FlxGraphic
 	{
-		var returnAsset:FlxGraphic = returnGraphic(key, library);
-		return returnAsset;
+		var bitmap:BitmapData = null;
+		var file:String = null;
+
+		file = getPath('images/$key.astc', BINARY, library);
+		if (currentTrackedAssets.exists(file))
+		{
+			localTrackedAssets.push(file);
+			return currentTrackedAssets.get(file);
+		}
+		else if (OpenFlAssets.exists(file, BINARY))
+			bitmap = OpenFlAssets.getBitmapData(file);
+
+		if (bitmap != null)
+		{
+			var retVal = cacheBitmap(file, bitmap);
+			if (retVal != null)
+				return retVal;
+		}
+
+		trace('$file image is null');
+		return null;
 	}
 
-	inline static public function font(key:String)
+	static public function font(key:String)
 	{
 		return 'assets/fonts/$key';
 	}
 
-	inline static public function video(key:String)
+	static public function video(key:String)
 	{
 		return 'assets/videos/$key.mp4';
 	}
 
-	inline static public function getSparrowAtlas(key:String, ?library:String)
+	static public function getSparrowAtlas(key:String, ?library:String)
 	{
 		return FlxAtlasFrames.fromSparrow(image(key, library), file('images/$key.xml', library));
 	}
 
-	inline static public function getPackerAtlas(key:String, ?library:String)
+	static public function getPackerAtlas(key:String, ?library:String)
 	{
 		return FlxAtlasFrames.fromSpriteSheetPacker(image(key, library), file('images/$key.txt', library));
 	}
 
-	inline static public function getTextureAtlas(key:String)
+	static public function getTextureAtlas(key:String)
 	{
 		return 'assets/images/$key';
 	}
 
-	inline static public function getTextFromFile(key:String, ?ignoreMods:Bool = false):String
+	static public function getTextFromFile(key:String, ?ignoreMods:Bool = false):String
 	{
 		var path:String = 'assets/' + key;
 		return (OpenFlAssets.exists(path, TEXT)) ? OpenFlAssets.getText(path) : null;
@@ -310,7 +325,7 @@ class Paths
 		spr.loadAtlasEx(folderOrImg, spriteJson, animationJson);
 	}
 
-	inline static public function formatToSongPath(path:String)
+	static public function formatToSongPath(path:String)
 	{
 		var invalidChars = ~/[~&\\;:<>#]/;
 		var hideChars = ~/[,'"%?!]/;

@@ -98,7 +98,7 @@ class Assets
 		}
         
         final astcTexture:String = haxe.io.Path.withoutExtension(id) + ".astc";
-		if (Assets.exists(astcTexture, AssetType.BINARY) && allowASTC)
+		if (Assets.exists(astcTexture, AssetType.BINARY))
 		{
 			var texture = openfl.Lib.current.stage.context3D.createASTCTexture(Assets.getBytes(astcTexture));
 
