@@ -100,6 +100,8 @@ class FreeplayState extends MusicBeatState
 
 		var swag:Alphabet = new Alphabet(1, 0, "swag");
 
+		addTouchPad("LEFT_FULL", "A_B_C");
+
 		super.create();
 	}
 
@@ -141,7 +143,7 @@ class FreeplayState extends MusicBeatState
 
 		var upP = controls.UP_P;
 		var downP = controls.DOWN_P;
-		var accepted = FlxG.keys.justPressed.ENTER;
+		var accepted = (touchPad.buttonA.justPressed || FlxG.keys.justPressed.ENTER);
 
 		if (upP)
 		{
@@ -178,7 +180,7 @@ class FreeplayState extends MusicBeatState
 			LoadingState.loadAndSwitchState(new PlayState());
 		}
 
-		if (FlxG.keys.justPressed.SPACE)
+		if (touchPad.buttonC.justPressed || FlxG.keys.justPressed.SPACE)
 		{
 			if (instPlaying != curSelected)
 			{

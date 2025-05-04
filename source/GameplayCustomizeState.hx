@@ -103,6 +103,9 @@ class GameplayCustomizeState extends MusicBeatState
         sick.updateHitbox();
 
         FlxG.mouse.visible = true;
+
+        addTouchPad("NONE", "B");
+        addTouchPadCamera();
     }
 
     override function update(elapsed:Float) {

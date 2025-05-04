@@ -190,7 +190,7 @@ class Judgement extends Option
 	
 	public override function press():Bool
 	{
-		return true;
+		return false;
 	}
 
 	private override function updateDisplay():String
@@ -434,6 +434,28 @@ class AccuracyDOption extends Option
 		return "Accuracy Mode: " + (FlxG.save.data.accuracyMod == 0 ? "Accurate" : "Complex");
 	}
 }
+
+class MobileControlsOption extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+		OptionsMenu.instance.persistentUpdate = false;
+		OptionsMenu.instance.openSubState(new mobile.MobileControlSelectSubState());
+		return false;
+	}
+
+	private override function updateDisplay():String
+	{
+		return "Mobile Controls";
+	}
+}
+
 
 class CustomizeGameplay extends Option
 {

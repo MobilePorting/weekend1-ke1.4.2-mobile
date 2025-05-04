@@ -126,7 +126,10 @@ class TitleState extends MusicBeatState
 
 			FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
 
+			canSkip = true;
+
 			FlxG.sound.music.fadeIn(4, 0, 0.7);
+			mobile.MobileData.init();
 		}
 
 		Conductor.changeBPM(102);
@@ -220,17 +223,7 @@ class TitleState extends MusicBeatState
 			FlxG.fullscreen = !FlxG.fullscreen;
 		}
 
-		var pressedEnter:Bool = FlxG.keys.justPressed.ENTER;
-
-		#if mobile
-		for (touch in FlxG.touches.list)
-		{
-			if (touch.justPressed)
-			{
-				pressedEnter = true;
-			}
-		}
-		#end
+		var pressedEnter:Bool = FlxG.keys.justPressed.ENTER || mobile.TouchUtil.justReleased;
 
 		var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
 
@@ -261,7 +254,7 @@ class TitleState extends MusicBeatState
 			});
 		}
 
-		if (pressedEnter && !skippedIntro)
+		if (pressedEnter && !skippedIntro && canSkip)
 		{
 			skipIntro();
 		}
@@ -356,6 +349,7 @@ class TitleState extends MusicBeatState
 	}
 
 	var skippedIntro:Bool = false;
+	var canSkip:Bool = false;
 
 	function skipIntro():Void
 	{

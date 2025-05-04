@@ -1,59 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<TextureAtlas imagePath="picoBlazinDeathConfirm.png" width="4143" height="3957">
-  <SubTexture name="Pico Gut Punch Death0001" x="3462" y="479"  width="605" height="413" frameX="-419" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0002" x="3447" y="978"  width="604" height="418" frameX="-420" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0003" x="0" y="524"  width="940" height="508" frameX="-154" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0004" x="933" y="0"  width="940" height="508" frameX="-154" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0005" x="0" y="0"  width="933" height="524" frameX="-156" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0006" x="0" y="0"  width="933" height="524" frameX="-156" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0007" x="940" y="1000"  width="933" height="492" frameX="-156" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0008" x="940" y="508"  width="939" height="492" frameX="-153" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0009" x="0" y="1525"  width="917" height="491" frameX="-163" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0010" x="930" y="1492"  width="922" height="492" frameX="-161" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0011" x="0" y="1032"  width="930" height="493" frameX="-155" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0012" x="1873" y="0"  width="914" height="494" frameX="-163" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0013" x="1852" y="1492"  width="902" height="495" frameX="-169" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0014" x="1879" y="494"  width="895" height="496" frameX="-173" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0015" x="1879" y="990"  width="879" height="496" frameX="-182" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0016" x="917" y="1984"  width="861" height="495" frameX="-190" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0017" x="0" y="2016"  width="840" height="496" frameX="-199" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0018" x="1778" y="1987"  width="807" height="497" frameX="-217" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0019" x="840" y="2479"  width="772" height="495" frameX="-252" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0020" x="1612" y="2484"  width="731" height="496" frameX="-293" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0021" x="0" y="2512"  width="703" height="495" frameX="-321" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0022" x="2343" y="2484"  width="700" height="494" frameX="-324" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0023" x="2585" y="1987"  width="696" height="491" frameX="-328" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0024" x="2754" y="1486"  width="692" height="489" frameX="-332" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0025" x="2758" y="990"  width="689" height="488" frameX="-335" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0026" x="2774" y="494"  width="688" height="484" frameX="-336" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0027" x="2787" y="0"  width="688" height="479" frameX="-336" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0028" x="2343" y="2978"  width="688" height="475" frameX="-336" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0029" x="1391" y="2980"  width="688" height="475" frameX="-336" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0030" x="688" y="3449"  width="688" height="475" frameX="-336" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0031" x="0" y="3482"  width="688" height="475" frameX="-336" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0032" x="2079" y="3453"  width="688" height="475" frameX="-336" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0033" x="1376" y="3455"  width="688" height="475" frameX="-336" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0034" x="2767" y="3453"  width="688" height="475" frameX="-336" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0035" x="3031" y="2978"  width="688" height="475" frameX="-336" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0036" x="3455" y="3453"  width="688" height="475" frameX="-336" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0037" x="3043" y="2478"  width="688" height="475" frameX="-336" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0038" x="3281" y="1975"  width="688" height="475" frameX="-336" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0039" x="3446" y="1478"  width="688" height="475" frameX="-336" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0040" x="703" y="2974"  width="688" height="475" frameX="-336" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0041" x="703" y="2974"  width="688" height="475" frameX="-336" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0042" x="703" y="2974"  width="688" height="475" frameX="-336" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0043" x="703" y="2974"  width="688" height="475" frameX="-336" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0044" x="703" y="2974"  width="688" height="475" frameX="-336" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0045" x="703" y="2974"  width="688" height="475" frameX="-336" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0046" x="703" y="2974"  width="688" height="475" frameX="-336" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0047" x="703" y="2974"  width="688" height="475" frameX="-336" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0048" x="703" y="2974"  width="688" height="475" frameX="-336" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0049" x="703" y="2974"  width="688" height="475" frameX="-336" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0050" x="703" y="2974"  width="688" height="475" frameX="-336" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0051" x="703" y="2974"  width="688" height="475" frameX="-336" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0052" x="703" y="2974"  width="688" height="475" frameX="-336" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0053" x="703" y="2974"  width="688" height="475" frameX="-336" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0054" x="0" y="3007"  width="688" height="475" frameX="-336" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0055" x="703" y="2974"  width="688" height="475" frameX="-336" frameY="-237" frameWidth="1196" frameHeight="796"/>
-  <SubTexture name="Pico Gut Punch Death0056" x="0" y="3007"  width="688" height="475" frameX="-336" frameY="-237" frameWidth="1196" frameHeight="796"/>
+<TextureAtlas imagePath="picoBlazinDeathConfirm.png">
+	<SubTexture name="Pico Gut Punch Death0001" x="3290" y="3289" width="413" height="605" rotated="true" frameX="-419" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0002" x="2869" y="3289" width="418" height="604" rotated="true" frameX="-420" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0003" x="528" y="1" width="508" height="940" rotated="true" frameX="-154" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0004" x="1039" y="1" width="508" height="940" rotated="true" frameX="-154" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0005" x="1" y="1" width="524" height="933" rotated="true" frameX="-156" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0006" x="1" y="1" width="524" height="933" rotated="true" frameX="-156" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0007" x="2045" y="1" width="492" height="933" rotated="true" frameX="-156" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0008" x="1550" y="1" width="492" height="939" rotated="true" frameX="-153" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0009" x="1" y="944" width="491" height="917" rotated="true" frameX="-163" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0010" x="3036" y="1" width="492" height="922" rotated="true" frameX="-161" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0011" x="2540" y="1" width="493" height="930" rotated="true" frameX="-155" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0012" x="3531" y="1" width="494" height="914" rotated="true" frameX="-163" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0013" x="495" y="944" width="495" height="902" rotated="true" frameX="-169" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0014" x="993" y="944" width="496" height="895" rotated="true" frameX="-173" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0015" x="1492" y="944" width="496" height="879" rotated="true" frameX="-182" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0016" x="1991" y="944" width="495" height="861" rotated="true" frameX="-190" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0017" x="2489" y="944" width="496" height="840" rotated="true" frameX="-199" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0018" x="2988" y="944" width="497" height="807" rotated="true" frameX="-217" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0019" x="3488" y="944" width="495" height="772" rotated="true" frameX="-252" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0020" x="1" y="1864" width="496" height="731" rotated="true" frameX="-293" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0021" x="500" y="1864" width="495" height="703" rotated="true" frameX="-321" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0022" x="998" y="1864" width="494" height="700" rotated="true" frameX="-324" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0023" x="1495" y="1864" width="491" height="696" rotated="true" frameX="-328" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0024" x="1989" y="1864" width="489" height="692" rotated="true" frameX="-332" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0025" x="2481" y="1864" width="488" height="689" rotated="true" frameX="-335" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0026" x="2972" y="1864" width="484" height="688" rotated="true" frameX="-336" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0027" x="3459" y="1864" width="479" height="688" rotated="true" frameX="-336" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0028" x="1" y="2598" width="475" height="688" rotated="true" frameX="-336" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0029" x="479" y="2598" width="475" height="688" rotated="true" frameX="-336" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0030" x="957" y="2598" width="475" height="688" rotated="true" frameX="-336" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0031" x="1435" y="2598" width="475" height="688" rotated="true" frameX="-336" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0032" x="1913" y="2598" width="475" height="688" rotated="true" frameX="-336" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0033" x="2391" y="2598" width="475" height="688" rotated="true" frameX="-336" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0034" x="2869" y="2598" width="475" height="688" rotated="true" frameX="-336" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0035" x="3347" y="2598" width="475" height="688" rotated="true" frameX="-336" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0036" x="1" y="3289" width="475" height="688" rotated="true" frameX="-336" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0037" x="479" y="3289" width="475" height="688" rotated="true" frameX="-336" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0038" x="957" y="3289" width="475" height="688" rotated="true" frameX="-336" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0039" x="1435" y="3289" width="475" height="688" rotated="true" frameX="-336" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0040" x="1913" y="3289" width="475" height="688" rotated="true" frameX="-336" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0041" x="1913" y="3289" width="475" height="688" rotated="true" frameX="-336" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0042" x="1913" y="3289" width="475" height="688" rotated="true" frameX="-336" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0043" x="1913" y="3289" width="475" height="688" rotated="true" frameX="-336" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0044" x="1913" y="3289" width="475" height="688" rotated="true" frameX="-336" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0045" x="1913" y="3289" width="475" height="688" rotated="true" frameX="-336" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0046" x="1913" y="3289" width="475" height="688" rotated="true" frameX="-336" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0047" x="1913" y="3289" width="475" height="688" rotated="true" frameX="-336" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0048" x="1913" y="3289" width="475" height="688" rotated="true" frameX="-336" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0049" x="1913" y="3289" width="475" height="688" rotated="true" frameX="-336" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0050" x="1913" y="3289" width="475" height="688" rotated="true" frameX="-336" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0051" x="1913" y="3289" width="475" height="688" rotated="true" frameX="-336" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0052" x="1913" y="3289" width="475" height="688" rotated="true" frameX="-336" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0053" x="1913" y="3289" width="475" height="688" rotated="true" frameX="-336" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0054" x="2391" y="3289" width="475" height="688" rotated="true" frameX="-336" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0055" x="1913" y="3289" width="475" height="688" rotated="true" frameX="-336" frameY="-237" frameWidth="940" frameHeight="524"/>
+	<SubTexture name="Pico Gut Punch Death0056" x="2391" y="3289" width="475" height="688" rotated="true" frameX="-336" frameY="-237" frameWidth="940" frameHeight="524"/>
 </TextureAtlas>

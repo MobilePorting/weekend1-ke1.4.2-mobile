@@ -1,6 +1,8 @@
 package;
 
+#if linc_luajit
 import llua.Lua;
+#end
 import Controls.Control;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -86,6 +88,9 @@ class PauseSubState extends MusicBeatSubstate
 		changeSelection();
 
 		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
+
+		addTouchPad("UP_DOWN", "A");
+		addTouchPadCamera();
 	}
 
 	override function update(elapsed:Float)
@@ -101,7 +106,7 @@ class PauseSubState extends MusicBeatSubstate
 		var rightP = controls.RIGHT_P;
 		var accepted = controls.ACCEPT;
 		var oldOffset:Float = 0;
-		var songPath = 'assets/data/' + PlayState.SONG.song.toLowerCase() + '/';
+		var songPath = Sys.getCwd() + 'assets/data/' + PlayState.SONG.song.toLowerCase() + '/';
 
 		if (upP)
 		{
@@ -180,11 +185,13 @@ class PauseSubState extends MusicBeatSubstate
 					FlxG.resetState();
 				case "Exit to menu":
 					PlayState.loadRep = false;
+					#if linc_luajit
 					if (PlayState.lua != null)
 					{
 						Lua.close(PlayState.lua);
 						PlayState.lua = null;
 					}
+					#end
 					if (PlayState.offsetTesting)
 					{
 						PlayState.offsetTesting = false;

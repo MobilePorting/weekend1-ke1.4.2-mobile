@@ -134,7 +134,13 @@ class Character extends FlxSprite
 				flipX = true;
 
 			case 'darnell' | 'darnell-blazin':
-				frames = Paths.getSparrowAtlas('darnell','weekend1');
+				var texture:FlxAtlasFrames = Paths.getSparrowAtlas('darnell-0', 'weekend1');
+				var subTexture:FlxAtlasFrames = Paths.getSparrowAtlas('darnell-1', 'weekend1');
+				subTexture.parent.destroyOnNoUse = false;
+				texture.addAtlas(subTexture);
+
+				frames = texture;
+
 				animation.addByPrefix('idle', 'Idle0', 24, false);
 				animation.addByPrefix('singLEFT', 'Pose Left0', 24, false);
 				animation.addByPrefix('singDOWN', 'Pose Down0', 24, false);
@@ -162,7 +168,7 @@ class Character extends FlxSprite
 				playAnim('idle');
 
 			case 'pico-playable' | 'pico-blazin':
-				var assetList = ['Pico_Playable', 'Pico_Shooting', 'Pico_Death', 'Pico_Intro'];
+				var assetList = ['Pico_Playable', 'Pico_Shooting', 'Pico_Death-0', 'Pico_Death-1', 'Pico_Intro'];
 
 				var texture:FlxAtlasFrames = Paths.getSparrowAtlas('Pico_Basic', 'weekend1');
 

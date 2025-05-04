@@ -18,7 +18,7 @@ import sys.FileSystem;
  * The config overrides a few global OpenALSoft settings with the aim of improving audio quality on desktop targets.
  */
 #if (!macro && android)
-@:build(backend.ALSoftConfig.setupConfig())
+@:build(ALSoftConfig.setupConfig())
 #end
 class ALSoftConfig
 {

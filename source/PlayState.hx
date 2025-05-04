@@ -8,10 +8,12 @@ import flixel.graphics.FlxGraphic;
 import openfl.utils.AssetManifest;
 import openfl.utils.AssetLibrary;
 import flixel.system.FlxAssets;
+#if linc_luajit
 import llua.Convert;
 import llua.Lua;
 import llua.State;
 import llua.LuaL;
+#end
 import lime.app.Application;
 import lime.media.AudioContext;
 import lime.media.AudioManager;
@@ -219,8 +221,9 @@ class PlayState extends MusicBeatState
 	private var allowedToHeadbang:Bool = false;
 	public static var songOffset:Float = 0;
 
+	#if linc_luajit
 	private var executeModchart = false;
-		
+
 	public static var lua:State = null;
 
 	function callLua(func_name : String, args : Array<Dynamic>, ?type : String) : Dynamic
@@ -400,6 +403,7 @@ class PlayState extends MusicBeatState
 		#end
 		return toBeCalled;
 	}
+	#end
 
 	override public function create()
 	{
@@ -417,14 +421,10 @@ class PlayState extends MusicBeatState
 		repPresses = 0;
 		repReleases = 0;
 
-		#if sys
+		#if linc_luajit
 		executeModchart = FileSystem.exists(Paths.lua(PlayState.SONG.song.toLowerCase()  + "/modchart"));
-		#end
-		#if !cpp
-		executeModchart = false;
-		#end
-
 		trace('Mod chart: ' + executeModchart + " - " + Paths.lua(PlayState.SONG.song.toLowerCase() + "/modchart"));
+		#end
 
 		#if desktop
 		switch (storyDifficulty)
@@ -670,13 +670,13 @@ class PlayState extends MusicBeatState
 			case 'phillyStreets':
 				boyfriend.x = 2151 - boyfriend.characterOrigin.x + boyfriend.globalOffsets[0];
 				boyfriend.y = 1228 - boyfriend.characterOrigin.y + boyfriend.globalOffsets[1];
-				dad.x = 920 - dad.characterOrigin.x + dad.globalOffsets[0];
-				dad.y = 1310 - dad.characterOrigin.y + dad.globalOffsets[1];
+				dad.x = 786 - dad.characterOrigin.x + dad.globalOffsets[0];
+				dad.y = 1141 - dad.characterOrigin.y + dad.globalOffsets[1];
 				gf.globalOffsets[1] = -100;
 				gf.x = 1453 - gf.characterOrigin.x + gf.globalOffsets[0];
 				gf.y = 1100 - gf.characterOrigin.y + gf.globalOffsets[1];
-				var dadCenterX = dad.x + dad.width / 2;
-				var dadCenterY = dad.y + dad.height / 2;
+				var dadCenterX = dad.x + 135 + dad.width / 2;
+				var dadCenterY = dad.y + 45 + dad.height / 2;
 				camPos.set(dadCenterX + 500, dadCenterY + -100);
 			case 'phillyBlazin':
 				boyfriend.x = -237 - boyfriend.characterOrigin.x;
@@ -869,7 +869,7 @@ add(groupBlazin);
 
 		add(camFollow);
 
-		FlxG.camera.follow(camFollow, LOCKON, 0.04 * (30 / (cast (Lib.current.getChildAt(0), Main)).getFPS()#if mobile + 1 #end));
+		FlxG.camera.follow(camFollow, LOCKON, 0.04 * (30 / (cast (Lib.current.getChildAt(0), Main)).getFPS() /*#if mobile + 1 #end*/));
 		FlxG.camera.zoom = defaultCamZoom;
 		FlxG.camera.focusOn(camFollow.getPosition());
 
@@ -964,6 +964,9 @@ add(groupBlazin);
 			replayTxt.cameras = [camHUD];
 
 		startingSong = true;
+
+		addMobileControls();
+		mobileControls.instance.visible = true;
 		
 		if (isStoryMode)
 		{
@@ -993,6 +996,11 @@ add(groupBlazin);
 		if (!loadRep)
 			rep = new Replay("na");
 
+		#if !android
+		addTouchPad("NONE", "P");
+ 		addTouchPadCamera();
+		#end
+
 		super.create();
 
 		Paths.clearUnusedMemory();
@@ -1011,6 +1019,7 @@ add(groupBlazin);
 		if (curSong.toLowerCase() == 'blazin')
 		camGame.fade(0xFF000000, 1.5, true, null, true);
 
+		#if linc_luajit
 		if (executeModchart)
 			{
 				trace('opening a lua state (because we are cool :))');
@@ -1241,6 +1250,7 @@ add(groupBlazin);
 	
 				trace('return: ' + Lua.tostring(lua,callLua('start', [PlayState.SONG.song])));
 			}
+		#end
 
 		talking = false;
 		startedCountdown = true;
@@ -1415,7 +1425,7 @@ add(groupBlazin);
 
 		#if desktop
 			var songPath = 'assets/data/' + PlayState.SONG.song.toLowerCase() + '/';
-			for(file in sys.FileSystem.readDirectory(songPath))
+			for(file in Paths.readDirectory(songPath))
 			{
 				var path = haxe.io.Path.join([songPath, file]);
 				if(!sys.FileSystem.isDirectory(path))
@@ -1843,6 +1853,7 @@ add(groupBlazin);
 		perfectMode = false;
 		#end
 
+		#if linc_luajit
 		if (executeModchart && lua != null && songStarted)
 		{
 			setVar('songPos',Conductor.songPosition);
@@ -1882,6 +1893,7 @@ add(groupBlazin);
 					playerStrums.members[i].visible = p2;
 			}
 		}
+		#end
 
 		if (currentFrames == FlxG.save.data.fpsCap)
 		{
@@ -1968,7 +1980,7 @@ var remappedIntensityValue:Float = FlxMath.remapToRange(Conductor.songPosition, 
 			scoreTxt.text = "Suggested Offset: " + offsetTest;
 
 		}
-		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
+		if ((#if android FlxG.android.justReleased.BACK || #elseif !desktop touchPad.buttonP.justPressed || #end controls.PAUSE) && startedCountdown && canPause)
 		{
 			persistentUpdate = false;
 			persistentDraw = true;
@@ -1992,11 +2004,13 @@ var remappedIntensityValue:Float = FlxMath.remapToRange(Conductor.songPosition, 
 			DiscordClient.changePresence("Chart Editor", null, null, true);
 			#end
 			FlxG.switchState(new ChartingState());
+			#if linc_luajit
 			if (lua != null)
 			{
 				Lua.close(lua);
 				lua = null;
 			}
+			#end
 		}
 
 		iconP1.setGraphicSize(Std.int(FlxMath.lerp(150, iconP1.width, 0.50)));
@@ -2118,13 +2132,13 @@ var remappedIntensityValue:Float = FlxMath.remapToRange(Conductor.songPosition, 
 			{
 				if(abot != null)
 				abot.lookLeft();
-				camFollow.setPosition(dad.getMidpoint().x + 150 + (lua != null ? getVar("followXOffset", "float") : 0), dad.getMidpoint().y - 100 + (lua != null ? getVar("followYOffset", "float") : 0));
+				camFollow.setPosition(dad.getMidpoint().x + 150 #if linc_luajit + (lua != null ? getVar("followXOffset", "float") : 0) #end, dad.getMidpoint().y - 100 #if linc_luajit + (lua != null ? getVar("followYOffset", "float") : 0) #end);
 
 				switch (curStage)
 				{
 					case 'phillyStreets':
-						var dadCenterX = dad.x + dad.width / 2;
-						var dadCenterY = dad.y + dad.height / 2;
+						var dadCenterX = dad.x + 135 + dad.width / 2;
+						var dadCenterY = dad.y + 45 + dad.height / 2;
 						camFollow.setPosition(dadCenterX + 500, dadCenterY + -100);
 					case 'phillyBlazin':
 						camFollow.setPosition(1403, 717);
@@ -2135,7 +2149,7 @@ var remappedIntensityValue:Float = FlxMath.remapToRange(Conductor.songPosition, 
 			{
 				if(abot != null)
 				abot.lookRight();
-				camFollow.setPosition(boyfriend.getMidpoint().x - 100 + (lua != null ? getVar("followXOffset", "float") : 0), boyfriend.getMidpoint().y - 100 + (lua != null ? getVar("followYOffset", "float") : 0));
+				camFollow.setPosition(boyfriend.getMidpoint().x - 100 #if linc_luajit + (lua != null ? getVar("followXOffset", "float") : 0) #end, boyfriend.getMidpoint().y - 100 #if linc_luajit + (lua != null ? getVar("followYOffset", "float") : 0) #end);
 
 				switch (curStage)
 				{
@@ -2158,6 +2172,8 @@ var remappedIntensityValue:Float = FlxMath.remapToRange(Conductor.songPosition, 
 
 		FlxG.watch.addQuick("beatShit", curBeat);
 		FlxG.watch.addQuick("stepShit", curStep);
+		FlxG.watch.addQuick("dadX", dad.x);
+		FlxG.watch.addQuick("dady", dad.y);
 		if (loadRep)
 			{
 				FlxG.watch.addQuick('rep rpesses',repPresses);
@@ -2373,7 +2389,7 @@ var remappedIntensityValue:Float = FlxMath.remapToRange(Conductor.songPosition, 
 
 	function endSong():Void
 	{
-		lightningActive = false;
+		mobileControls.instance.visible = #if !android touchPad.visible = #end lightningActive = false;
 
 		if (SONG.song.toLowerCase() == '2hot' && !hasPlayedCutscene && isStoryMode)
 		{
@@ -2402,11 +2418,13 @@ var remappedIntensityValue:Float = FlxMath.remapToRange(Conductor.songPosition, 
 		if (!loadRep)
 			rep.SaveReplay();
 
+		#if linc_luajit
 		if (executeModchart)
 		{
 			Lua.close(lua);
 			lua = null;
 		}
+		#end
 
 		canPause = false;
 		FlxG.sound.music.volume = 0;
@@ -2445,11 +2463,13 @@ var remappedIntensityValue:Float = FlxMath.remapToRange(Conductor.songPosition, 
 
 					FlxG.switchState(new StoryMenuState());
 
+					#if linc_luajit
 					if (lua != null)
 					{
 						Lua.close(lua);
 						lua = null;
 					}
+					#end
 
 					StoryMenuState.weekUnlocked[Std.int(Math.min(storyWeek + 1, StoryMenuState.weekUnlocked.length - 1))] = true;
 
@@ -3441,11 +3461,13 @@ var remappedIntensityValue:Float = FlxMath.remapToRange(Conductor.songPosition, 
 		}
 		}
 
+		#if linc_luajit
 		if (executeModchart && lua != null)
 		{
 			setVar('curStep',curStep);
 			callLua('stepHit',[curStep]);
 		}
+		#end
 
 		#if desktop
 		songLength = FlxG.sound.music.length;
@@ -3464,11 +3486,13 @@ var remappedIntensityValue:Float = FlxMath.remapToRange(Conductor.songPosition, 
 			notes.sort(FlxSort.byY, FlxSort.DESCENDING);
 		}
 
+		#if linc_luajit
 		if (executeModchart && lua != null)
 		{
 			setVar('curBeat',curBeat);
 			callLua('beatHit',[curBeat]);
 		}
+		#end
 
 		if (SONG.notes[Math.floor(curStep / 16)] != null)
 		{
@@ -3744,11 +3768,11 @@ var remappedIntensityValue:Float = FlxMath.remapToRange(Conductor.songPosition, 
 						var boyfriendCenterY = boyfriend.y + boyfriend.height / 2;
 						var gfCenterX = gf.x + gf.width / 2;
 						var gfCenterY = gf.y + gf.height / 2;
-						var dadCenterX = dad.x + dad.width / 2;
-						var dadCenterY = dad.y + dad.height / 2;
+						var dadCenterX = dad.x + 135 + dad.width / 2;
+						var dadCenterY = dad.y + 45 + dad.height / 2;
 		var picoPos:Array<Float> = [boyfriendCenterX + -350, boyfriendCenterY + -100];
 		var nenePos:Array<Float> = [gfCenterX, gfCenterY];
-		var darnellPos:Array<Float> = [dadCenterX + 500, dadCenterY + -100];
+		var darnellPos:Array<Float> = [dadCenterX + 500, dadCenterY - 100];
 
 		var cutsceneDelay:Float = 2;
 

@@ -155,6 +155,9 @@ class Paths
 
 	static function getPath(file:String, type:AssetType, library:Null<String>)
 	{
+		if (library == "mobile")
+			return getPreloadPath('mobile/$file');
+
 		if (library != null)
 			return getLibraryPath(file, library);
 
@@ -177,12 +180,12 @@ class Paths
 		return if (library == "preload" || library == "default") getPreloadPath(file); else getLibraryPathForce(file, library);
 	}
 
-	inline static function getLibraryPathForce(file:String, library:String)
+	inline public static function getLibraryPathForce(file:String, library:String)
 	{
 		return '$library:assets/$library/$file';
 	}
 
-	inline static function getPreloadPath(file:String)
+	inline public static function getPreloadPath(file:String)
 	{
 		return 'assets/$file';
 	}
@@ -311,5 +314,26 @@ class Paths
 
 		var path = invalidChars.split(path.replace(' ', '-')).join("-");
 		return hideChars.split(path).join("").toLowerCase();
+	}
+
+	public static function readDirectory(directory:String):Array<String>
+	{
+		#if desktop
+		return FileSystem.readDirectory(directory);
+		#else
+		var dirs:Array<String> = [];
+		for (dir in OpenFlAssets.list().filter(folder -> folder.startsWith(directory)))
+		{
+			@:privateAccess
+			for (library in lime.utils.Assets.libraries.keys())
+			{
+				if (library != 'default' && OpenFlAssets.exists('$library:$dir') && (!dirs.contains('$library:$dir') || !dirs.contains(dir)))
+					dirs.push('$library:$dir');
+				else if (OpenFlAssets.exists(dir) && !dirs.contains(dir))
+					dirs.push(dir);
+			}
+		}
+		return dirs.map(dir -> dir.substr(dir.lastIndexOf("/") + 1));
+		#end
 	}
 }

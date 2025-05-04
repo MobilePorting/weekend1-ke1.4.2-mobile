@@ -47,13 +47,6 @@
       "url": "https://github.com/MobilePorting/lime"
     },
     {
-      "name": "linc_luajit",
-      "type": "git",
-      "dir": null,
-      "ref": null,
-      "url": "https://github.com/MobilePorting/linc_luajit-0.6.3"
-    },
-    {
       "name": "openfl",
       "type": "haxelib",
       "version": "9.1.0"

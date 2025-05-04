@@ -37,6 +37,9 @@ class Main extends Sprite
 
 	public function new()
 	{
+		#if mobile
+		Sys.setCwd(#if android haxe.io.Path.addTrailingSlash(android.content.Context.getExternalFilesDir()) #elseif ios lime.system.System.documentsDirectory #end);
+		#end
 		CrashHandler.init();
 		super();
 
@@ -82,11 +85,12 @@ class Main extends Sprite
 
 		addChild(game);
 
-		#if !mobile
 		fpsCounter = new FPS(10, 3, 0xFFFFFF);
 		addChild(fpsCounter);
 		toggleFPS(FlxG.save.data.fps);
 
+		#if android
+		FlxG.android.preventDefaultKeys = [BACK]; 
 		#end
 	}
 

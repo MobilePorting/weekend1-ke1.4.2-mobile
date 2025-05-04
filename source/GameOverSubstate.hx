@@ -142,6 +142,9 @@ new FlxTimer().start(1.25, function(tmr){afterPicoDeathGutPunchIntro();});
 		}
 
 		FlxG.camera.follow(camFollow, LOCKON, 0.01);
+
+		addTouchPad("NONE", "A_B");
+		addTouchPadCamera();
 	}
 
 	function afterPicoDeathGutPunchIntro():Void {

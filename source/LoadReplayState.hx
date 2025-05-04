@@ -33,7 +33,7 @@ class LoadReplayState extends MusicBeatState
 	{
 		var menuBG:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
         #if sys
-		controlsStrings = sys.FileSystem.readDirectory(Sys.getCwd() + "/assets/replays/");
+		controlsStrings = Paths.readDirectory(Sys.getCwd() + "/assets/replays/");
         #end
 		trace(controlsStrings);
 
@@ -80,7 +80,8 @@ class LoadReplayState extends MusicBeatState
 		}
 
 
-		versionShit = new FlxText(5, FlxG.height - 34, 0, "Replay Loader (ESCAPE TO GO BACK)\nNOTICE!!!! Replays are in a beta stage, and they are probably not 100% correct. expect misses and other stuff that isn't there!", 12);
+		final buttonEsc:String = #if desktop "ESCAPE" #else "B" #end;
+		versionShit = new FlxText(5, FlxG.height - 34, 0, "Replay Loader (" + buttonEsc + " TO GO BACK)\nNOTICE!!!! Replays are in a beta stage, and they are probably not 100% correct. expect misses and other stuff that isn't there!", 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
@@ -92,6 +93,8 @@ class LoadReplayState extends MusicBeatState
 		add(poggerDetails);
 
 		changeSelection(0);
+
+		addTouchPad("UP_DOWN", "A_B");
 
 		super.create();
 	}

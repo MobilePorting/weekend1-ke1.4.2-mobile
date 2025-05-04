@@ -21,7 +21,7 @@
 	<window if="desktop" orientation="landscape" fullscreen="false" resizable="true" vsync="false"/>
 
 	<!--Mobile-specific-->
-	<window if="mobile" orientation="landscape" fullscreen="true" width="0" height="0" resizable="false"/>
+	<window if="mobile" orientation="landscape" fullscreen="true" resizable="false" allow-shaders="true" require-shaders="true" />
 
 	<!-- _____________________________ Path Settings ____________________________ -->
 
@@ -83,7 +83,7 @@
 	<!--<haxelib name="newgrounds"/>-->
 	<!--<haxelib name="polymod"/>-->
 	<haxelib name="discord_rpc" if="desktop"/>
-	<haxelib name="linc_luajit"/>
+	<!--<haxelib name="linc_luajit"/>-->
 	<haxelib name="hxvlc" if="desktop || mobile" />
 	<!-- <haxelib name="hxcpp-debug-server" if="desktop"/> -->
 
@@ -93,7 +93,7 @@
 	<haxedef name="FLX_NO_FOCUS_LOST_SCREEN" />
 
 	<!--Disable the Flixel core debugger. Automatically gets set whenever you compile in release mode!-->
-	<haxedef name="FLX_NO_DEBUG" unless="debug" />
+	<haxedef name="FLX_NO_DEBUG" unless="debug || FLIXEL_DEBUGGER" />
 
 	<!--Used for crash handler-->
 	<section if="cpp">
@@ -101,6 +101,14 @@
 		<haxedef name="HXCPP_STACK_LINE" />
 		<haxedef name="HXCPP_STACK_TRACE" />
 		<haxedef name="HXCPP_CATCH_SEGV" />
+	</section>
+
+	<section if="android">
+		<!-- Do whatever you want I'm tired uninstall and install everytime -->
+		<certificate path="key.keystore" password="nullfunni" alias="null" alias-password="nullfunni" if="android" unless="debug" />
+
+		<config:android permission="android.permission.WAKE_LOCK" />
+		<config:android permission="android.permission.VIBRATE" />
 	</section>
 	
 	<!--Disable deprecated warnings-->
