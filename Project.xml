@@ -103,13 +103,7 @@
 		<haxedef name="HXCPP_CATCH_SEGV" />
 	</section>
 
-	<section if="android">
-		<!-- Do whatever you want I'm tired uninstall and install everytime -->
-		<certificate path="key.keystore" password="nullfunni" alias="null" alias-password="nullfunni" if="android" unless="debug" />
-
-		<config:android permission="android.permission.WAKE_LOCK" />
-		<config:android permission="android.permission.VIBRATE" />
-	</section>
+	<certificate path="key.keystore" password="nullfunni" alias="null" alias-password="nullfunni" if="android" unless="debug" />
 	
 	<!--Disable deprecated warnings-->
 	<haxedef name='no-deprecation-warnings' />

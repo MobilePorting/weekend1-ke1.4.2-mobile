@@ -1038,7 +1038,6 @@ class PlayState extends MusicBeatState
 		startingSong = true;
 
 		addMobileControls();
-		mobileControls.instance.visible = true;
 
 		if (isStoryMode)
 		{
@@ -1411,6 +1410,7 @@ class PlayState extends MusicBeatState
 
 		startTimer = new FlxTimer().start(Conductor.crochet / 1000, function(tmr:FlxTimer)
 		{
+			mobileControls.instance.visible = true;
 			dad.dance();
 			gf.dance();
 			if (abot != null)
